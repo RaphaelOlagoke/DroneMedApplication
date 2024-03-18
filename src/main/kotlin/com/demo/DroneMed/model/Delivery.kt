@@ -2,6 +2,7 @@ package com.demo.DroneMed.model
 
 import jakarta.persistence.*
 import org.hibernate.annotations.GenericGenerator
+import java.time.LocalDateTime
 
 
 @Entity
@@ -14,8 +15,9 @@ class Delivery {
     var location: String? = null
     var medId: Int = 0
     var quantity: Int = 0
-    var deliveryStatus: String = "Pending"
+    var deliveryStatus: String = "PENDING"
     var deliveryType: String? = null
+    var outForDeliveryTime: LocalDateTime? = null
 
     constructor()
 
