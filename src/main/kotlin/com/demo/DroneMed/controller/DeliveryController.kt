@@ -1,7 +1,9 @@
 package com.demo.DroneMed.controller
 
+import com.demo.DroneMed.dto.DeliveryDTO
 import com.demo.DroneMed.model.Delivery
 import com.demo.DroneMed.service.DeliveryService
+import com.demo.DroneMed.util.DeliveryMapper
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -19,23 +21,23 @@ class DeliveryController(deliveryService: DeliveryService) {
     var deliveryService = deliveryService
 
     @GetMapping("{deliveryId}")
-    fun getDeliveryDetails(@PathVariable("deliveryId") deliveryId : Int) : Delivery {
+    fun getDeliveryDetails(@PathVariable("deliveryId") deliveryId : Int) : DeliveryDTO {
         return deliveryService.getDelivery(deliveryId)
     }
 
     @GetMapping
-    fun getAllDeliveries(): List<Delivery> {
+    fun getAllDeliveries(): List<DeliveryDTO> {
         return deliveryService.getAllDeliveries()
     }
 
     @PostMapping
-    fun createDelivery(@RequestBody delivery: Delivery) : String{
-        return deliveryService.createDelivery(delivery)
+    fun createDelivery(@RequestBody deliveryDTO: DeliveryDTO) : String{
+        return deliveryService.createDelivery(deliveryDTO)
     }
 
     @PutMapping("{deliveryId}")
-    fun updateDeliveryDetails(@RequestBody delivery: Delivery, @PathVariable("deliveryId") deliveryId: Int) : String{
-        return deliveryService.updateDelivery(delivery, deliveryId)
+    fun updateDeliveryDetails(@RequestBody deliveryDTO: DeliveryDTO, @PathVariable("deliveryId") deliveryId: Int) : String{
+        return deliveryService.updateDelivery(deliveryDTO, deliveryId)
     }
 
     @DeleteMapping("{deliveryId}")
